@@ -1,3 +1,36 @@
+// SERVICES
+
+const servicesItems_elements = document.querySelectorAll('[data-section="services"]');
+
+const servicesTitle = document.querySelector('#services-main-title');
+const servicesDescription = document.querySelector('#services-main-description');
+
+servicesItems_elements.forEach((element, index) => {
+    element.addEventListener('click', (event) => {
+        if (element.dataset.active === 'true') {
+            return;
+        }
+
+        servicesItems_elements.forEach((element) => {
+            element.dataset.active = 'false';
+        });
+        element.dataset.active = 'true';
+
+        const titleString = element.querySelector('.services-item-title').innerHTML;
+        servicesTitle.innerHTML = titleString;
+
+        const descriptionString = element.querySelector('.services-item-description').innerHTML;
+        servicesDescription.innerHTML = descriptionString;
+
+        localStorage.setItem("service-active-element-index", index);
+    });
+});
+
+const lastServiceSectionId = localStorage.getItem("service-active-element-index") || 0;
+servicesItems_elements[lastServiceSectionId].click();
+
+// GALLERY
+
 const galleryButtonBack_element = document.querySelector('#gallery-button-back');
 const galleryButtonNext_element = document.querySelector('#gallery-button-next');
 
@@ -53,6 +86,4 @@ function changeGalleryImage(indexPlus) {
     }
 }
 
-(() => {
-    changeGalleryImage(galleryImageIndex);
-})();
+changeGalleryImage(galleryImageIndex);

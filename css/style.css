@@ -10,7 +10,6 @@
     --color-background-dark: rgb(20, 20, 20);
     --color-background-dark-opacity50: rgba(20, 20, 20, 0.5);
 
-
     --border-radius: 0.4rem;
     --border-size: 0.25rem;
 
@@ -97,6 +96,7 @@ body {
 .flex-space-evenly { justify-content: space-evenly; }
 .flex-start { justify-content: flex-start; align-items: flex-start; }
 .flex-end { justify-content: end; align-items: flex-end; }
+.flex-stretch { align-items: stretch; }
 
 .flex-1 { flex: 1; }
 .flex-2 { flex: 2; }
@@ -235,7 +235,7 @@ body {
 /* ABOUT */
 
 .about-description {
-    text-align: justify;
+    text-wrap: pretty;
 }
 
 .about-image > img {
@@ -245,66 +245,108 @@ body {
     border-radius: var(--border-radius);
 }
 
-/* BRANDS */
+/* SERVICES */
 
-.brands img {
-    width: 8rem;
-    height: auto;
-}
-
-/* CONTACT */
-
-.contact-map {
-    width: 100%;
-
-    height: 80svh;
-    max-height: 35rem;
-
-    font-size: 1.1rem;
-}
-
-.contact-map > iframe {
-    width: 100%;
-    height: 100%;
-
-    border: none;
-    border-radius: var(--border-radius);
-}
-
-.contact-info {
-    justify-content: space-evenly;
+.services-item {
+    position: relative;
     
-    width: 100%;
+    align-items: center;
 
-    font-size: 1.1rem;
-}
+    width: 16rem;
 
-.contact-info a {
-    padding: var(--gap-half);
+    padding: calc(var(--gap-double) * 2) var(--gap-double);
+
+    background: linear-gradient(
+        var(--color-background-light) 10%,
+        var(--color-background-light-secondaty) 100%
+    );
+
     border-radius: var(--border-radius);
 
-    transition: all var(--transition-duration) var(--transition-ease);
+    cursor: pointer;
+
+    user-select: none;
 }
 
-.contact-info a:hover {
-    background-color: var(--color-background-dark-opacity50);
+.services-item:after {
+    position: absolute;
+
+    content: '';
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 0;
+
+    border-radius: var(--border-radius);
+
+    background: linear-gradient(
+        var(--color-background-light) 10%,
+        rgb(0, 90, 170) 100%
+    );
+
+    z-index: 1;
+
+    transition: height calc(var(--transition-duration) * 2) var(--transition-ease);
 }
 
-.contact-info a {
-    text-decoration: none;
-
-    flex: 1;
-}
-
-.contact-info-image {
-    width: 2.5rem;
-    height: 2.5rem;
-}
-
-.contact-info img {
+.services-item[data-active="true"]:after {
     height: 100%;
+}
+
+.services-item-image {
+    width: 5rem;
+    height: 5rem;
+    z-index: 2;
+}
+
+.services-item-image > img {
+    height: 75%;
     width: auto;
-    margin-inline: auto;
+}
+
+.services-item-description {
+    display: none;
+    z-index: 2;
+}
+
+.services-item-description-bullets {
+    margin: var(--gap-half);
+}
+
+.services-item-title,
+.services-main-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    text-wrap: pretty;
+
+    z-index: 2;
+}
+
+.services-main-title {
+    margin-bottom: var(--gap);
+}
+
+.services-main {
+    width: 100%;
+    max-width: 50rem;
+
+    padding: var(--gap);
+
+    text-wrap: pretty;
+}
+
+/* ROOM */
+
+.room img {
+    width: 100%;
+    height: auto;
+
+    max-width: 30rem;
+
+    border-radius: var(--border-radius);
 }
 
 /* GALLERY */
@@ -445,6 +487,68 @@ body {
     100% {
         left: 0;
     }
+}
+
+/* BRANDS */
+
+.brands img {
+    width: 8rem;
+    height: auto;
+}
+
+/* CONTACT */
+
+.contact-map {
+    width: 100%;
+
+    height: 80svh;
+    max-height: 35rem;
+
+    font-size: 1.1rem;
+}
+
+.contact-map > iframe {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.contact-info {
+    justify-content: space-evenly;
+    
+    width: 100%;
+
+    font-size: 1.1rem;
+}
+
+.contact-info a {
+    padding: var(--gap-half);
+    border-radius: var(--border-radius);
+
+    transition: all var(--transition-duration) var(--transition-ease);
+}
+
+.contact-info a:hover {
+    background-color: var(--color-background-dark-opacity50);
+}
+
+.contact-info a {
+    text-decoration: none;
+
+    flex: 1;
+}
+
+.contact-info-image {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.contact-info img {
+    height: 100%;
+    width: auto;
+    margin-inline: auto;
 }
 
 /* FOOTER */
