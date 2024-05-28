@@ -1,3 +1,18 @@
+// NAVBAR
+
+const navbarMore_element = document.querySelector('#navbar-more');
+
+const navbarMoreIconOpen_element = document.querySelector('#navbar-more-icon-open');
+const navbarMoreIconClose_element = document.querySelector('#navbar-more-icon-close');
+
+navbarMoreIconOpen_element.addEventListener('click', (event) => {
+    navbarMore_element.dataset.open = 'true';
+});
+
+navbarMoreIconClose_element.addEventListener('click', (event) => {
+    navbarMore_element.dataset.open = 'false';
+});
+
 // SERVICES
 
 const servicesItems_elements = document.querySelectorAll('[data-section="services"]');

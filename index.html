@@ -27,8 +27,9 @@
             <div class="intro-logo"><img src="assets/logo.png"></div>
         </div>
 
-        <div class="flex-row navbar">
+        <div class="flex-row flex-space-between navbar">
             <div class="navbar-logo"><img src="assets/logo.png"></div>
+
             <div class="flex-row flex-gap-none navbar-navigation">
                 <div>Σχετικά</div>
                 <div>Υπηρεσίες</div>
@@ -37,17 +38,38 @@
                 <div>Μάρκες</div>
                 <div>Επικοινωνία</div>
             </div>
+
             <div class="flex-row flex-gap-half navbar-language">
                 <div class="navbar-language-flag"><img src="assets/greece.png"></div>
                 <div>Ελληνικά</div>
-                <div class="navbar-language-caret"><img src="assets/icons/caret-down-solid.svg"></div>
+            </div>
+
+            <div class="navbar-more" id="navbar-more" data-open="false">
+                <img src="assets/icons/bars-solid.svg" class="navbar-more-icon" data-open="false" id="navbar-more-icon-open">
+                <img src="assets/icons/xmark-solid.svg" class="navbar-more-icon" data-open="true" id="navbar-more-icon-close">
+            
+                <div class="flex-column navbar-more-extra">
+                    <div class="flex-column flex-gap-none flex-stretch navbar-more-navigation">
+                        <div>Σχετικά</div>
+                        <div>Υπηρεσίες</div>
+                        <div>Studio</div>
+                        <div>Φωτογραφίες</div>
+                        <div>Μάρκες</div>
+                        <div>Επικοινωνία</div>
+                    </div>
+
+                    <div class="flex-row flex-gap-half navbar-more-language">
+                        <div class="navbar-language-flag"><img src="assets/greece.png"></div>
+                        <div>Ελληνικά</div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="section flex-column flex-gap-double about">
             <div class="section-title">Σχετικά Με Εμάς</div>
 
-            <div class="flex-row section-container">
+            <div class="flex-row flex-wrap section-container about-container">
                 <div class="flex-2 about-description">
                     Το Star Sound Studio προσφέρει εξειδικευμένες υπηρεσίες ήχου και φωτισμού από το 1980.
                     Έχουμε δεσμευτεί να παρέχουμε ανώτερη ποιότητα και εξυπηρέτηση στους πελάτες μας.
@@ -70,8 +92,8 @@
         <div class="section flex-column flex-gap-double services">
             <div class="section-title">Υπηρεσίες</div>
 
-            <div class="flex-column section-container">
-                <div class="flex-row flex-stretch">
+            <div class="flex-row flex-wrap section-container">
+                <div class="flex-row flex-wrap flex-stretch">
                     <div class="flex-column flex-start services-item" data-section="services" data-active="false">
                         <div class="flex-row services-item-image"><img src="assets/icons/sliders-solid.svg"></div>
                         <div class="services-item-title">Ηχητική & φωτιστική κάλυψη εκδηλώσεων</div>
@@ -115,6 +137,8 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div class="flex-row flex-wrap flex-stretch">
                     <div class="flex-column flex-start services-item" data-section="services" data-active="false">
                         <div class="flex-row services-item-image"><img src="assets/icons/screwdriver-wrench-solid.svg"></div>
                         <div class="services-item-title">Εγκαταστάσεις ηχοσυστημάτων στον χώρο σας</div>
