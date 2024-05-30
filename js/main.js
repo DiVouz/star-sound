@@ -1,16 +1,53 @@
 // NAVBAR
 
+const navbar_element = document.querySelector('#navbar');
+
+(() => {
+    const observer = new IntersectionObserver(([e]) => {
+        e.target.dataset.sticky = (e.intersectionRatio < 1)
+    },
+    {
+        rootMargin: '-1px 0px 0px 0px',
+        threshold: [1]
+    });
+
+    observer.observe(navbar_element);
+})();
+
 const navbarMore_element = document.querySelector('#navbar-more');
 
 const navbarMoreIconOpen_element = document.querySelector('#navbar-more-icon-open');
-const navbarMoreIconClose_element = document.querySelector('#navbar-more-icon-close');
-
 navbarMoreIconOpen_element.addEventListener('click', (event) => {
+    if (navbarMore_element.dataset.open === 'true') {
+        return;
+    }
+
+    event.stopPropagation();
+
     navbarMore_element.dataset.open = 'true';
+
+    if (navbar_element.dataset.sticky === 'false') {
+        navbarMore_element.scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
 });
 
+const navbarMoreIconClose_element = document.querySelector('#navbar-more-icon-close');
 navbarMoreIconClose_element.addEventListener('click', (event) => {
+    if (navbarMore_element.dataset.open === 'false') {
+        return;
+    }
+
+    event.stopPropagation();
+
     navbarMore_element.dataset.open = 'false';
+});
+
+window.addEventListener('click', (event) => {
+    if (navbarMore_element.dataset.open === 'true') {
+        navbarMore_element.dataset.open = 'false';
+    }
 });
 
 // SERVICES

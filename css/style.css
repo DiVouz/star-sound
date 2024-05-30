@@ -51,6 +51,9 @@ html {
     font-size: 100%;
     font-weight: 400;
     color: var(--color-white);
+
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--navbar-logo-height);
 }
 
 body {
@@ -157,13 +160,17 @@ body {
     padding: 0 var(--gap-double);
 }
 
+[data-sticky="false"] .navbar-logo {
+    visibility: hidden;
+}
+
 .navbar-logo > img {
     height: 100%;
     width: auto;
 }
 
-.navbar-navigation > div,
-.navbar-more-navigation > div {
+.navbar-navigation div,
+.navbar-more-navigation div {
     padding: var(--gap);
     border-radius: var(--border-radius);
 
@@ -176,9 +183,14 @@ body {
     transition: all var(--transition-duration) var(--transition-ease);
 }
 
-.navbar-navigation > div:hover,
-.navbar-more-navigation > div:hover {
+.navbar-navigation div:hover,
+.navbar-more-navigation div:hover {
     background-color: var(--color-background-light-opacity50);
+}
+
+.navbar-navigation a,
+.navbar-more-navigation a {
+    text-decoration: none;
 }
 
 .navbar-language,
@@ -196,6 +208,10 @@ body {
     width: auto;
 }
 
+.navbar-language-flag {
+    padding: var(--gap);
+}
+
 .navbar-language-flag,
 .navbar-more-language-flag {
     border-radius: 0.1rem;
@@ -210,7 +226,7 @@ body {
 }
 
 .navbar-more-icon {
-    height: calc(var(--navbar-logo-height) / 2);
+    height: calc(var(--navbar-logo-height) / 3);
     width: auto
 }
 
@@ -272,19 +288,24 @@ body {
     filter: blur(6px);
 }
 
-.intro-logo > img {
-    object-fit: cover;
+.intro-logo {
+    width: 90%;
+    max-width: 30rem;
+}
 
-    height: 50svh;
-    max-height: 35rem;
-    
-    width: auto;
+.intro-logo > img {
+    width: 100%;
+    height: auto;
 }
 
 /* ABOUT */
 
 .about-description {
     text-wrap: pretty;
+}
+
+.about-image {
+    max-width: 30rem;
 }
 
 .about-image > img {
@@ -391,9 +412,9 @@ body {
     transition: all var(--transition-duration) var(--transition-ease);
 }
 
-/* ROOM */
+/* STUDIO */
 
-.room img {
+.studio img {
     width: 100%;
     height: auto;
 
@@ -613,7 +634,7 @@ body {
 
 /* MOBILE */
 
-@media (max-width: 950px) {
+@media (max-width: 900px) {
     .navbar-navigation {
         display: none;
     }
