@@ -1,1 +1,1 @@
-# star-sound-studio
+# star-sound
