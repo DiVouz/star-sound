@@ -96,8 +96,8 @@ galleryButtonNext_element.addEventListener('click', (event) => {
     changeGalleryImage(1);
 });
 
-function getGalleryImageIndex(currentIndex, maxIndex, indexPlus) {
-    currentIndex += indexPlus;
+function getGalleryImageIndex(currentIndex, maxIndex, plusIndex) {
+    currentIndex += plusIndex;
     if (currentIndex >= maxIndex) {
         currentIndex = 0;
     } else if (currentIndex < 0) {
@@ -106,23 +106,23 @@ function getGalleryImageIndex(currentIndex, maxIndex, indexPlus) {
     return currentIndex;
 }
 
-function changeGalleryImage(indexPlus) {
+function changeGalleryImage(plusIndex) {
     const galleryImages_elements = document.querySelectorAll('.gallery-image');
 
     const lastActiveIndex = galleryImageIndex;
 
-    galleryImageIndex = getGalleryImageIndex(galleryImageIndex, galleryImages_elements.length, indexPlus);
+    galleryImageIndex = getGalleryImageIndex(galleryImageIndex, galleryImages_elements.length, plusIndex);
 
     const prevIndex = getGalleryImageIndex(galleryImageIndex, galleryImages_elements.length, -1);
     const nextIndex = getGalleryImageIndex(galleryImageIndex, galleryImages_elements.length, 1);
 
     for (let index = 0; index < galleryImages_elements.length; index++) {
         if (index === galleryImageIndex) {
-            galleryImages_elements[index].dataset.direction = ((indexPlus > 0) ? 'right' : 'left');
+            galleryImages_elements[index].dataset.direction = ((plusIndex > 0) ? 'right' : 'left');
             galleryImages_elements[index].dataset.active = 'true';
         } else {
             if (index === lastActiveIndex) {
-                galleryImages_elements[index].dataset.direction = ((indexPlus > 0) ? 'left' : 'right');
+                galleryImages_elements[index].dataset.direction = ((plusIndex > 0) ? 'left' : 'right');
             }
 
             galleryImages_elements[index].dataset.active = 'false';
