@@ -50,6 +50,37 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// LANGUAGE
+
+const navbarLanguageButton_element = document.querySelector('#navbar-language');
+const navbarMoreLanguageButton_element = document.querySelector('#navbar-more-language')
+
+function toggleLanguage(forceLang = null) {
+	if (forceLang === null || forceLang === undefined) {
+		forceLang = document.documentElement.lang === 'en' ? 'el' : 'en';
+	}
+    
+	if (document.documentElement.lang !== forceLang) {
+		document.documentElement.lang = forceLang;
+		let url = new URL(window.location.href);
+		url.searchParams.set('lang', forceLang);
+        window.history.pushState({}, '', url.href);
+	}
+}
+
+(() => {
+    navbarLanguageButton_element.addEventListener('click', (event) => toggleLanguage());
+    navbarMoreLanguageButton_element.addEventListener('click', (event) => toggleLanguage());
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (langParam !== null) {
+        if (langParam === 'en' || langParam === 'el') {
+            toggleLanguage(langParam);
+        }
+    }
+})();
+
 // SERVICES
 
 const servicesItems_elements = document.querySelectorAll('[data-section="services"]');
@@ -74,11 +105,11 @@ servicesItems_elements.forEach((element, index) => {
         const descriptionString = element.querySelector('.services-item-description').innerHTML;
         servicesDescription.innerHTML = descriptionString;
 
-        localStorage.setItem("service-active-element-index", index);
+        localStorage.setItem('service-active-element-index', index);
     });
 });
 
-const lastServiceSectionId = localStorage.getItem("service-active-element-index") || 0;
+const lastServiceSectionId = localStorage.getItem('service-active-element-index') || 0;
 servicesItems_elements[lastServiceSectionId].click();
 
 // GALLERY
@@ -138,4 +169,6 @@ function changeGalleryImage(plusIndex) {
     }
 }
 
-changeGalleryImage(galleryImageIndex);
+(() => {
+    changeGalleryImage(galleryImageIndex);
+})();
