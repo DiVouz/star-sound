@@ -5,7 +5,7 @@
     --color-background-light: rgb(65, 65, 65);
     --color-background-light-opacity50: rgba(65, 65, 65, 0.5);
     
-    --color-background-light-secondaty: rgb(40, 40, 40);
+    --color-background-light-secondary: rgb(40, 40, 40);
 
     --color-background-dark: rgb(20, 20, 20);
     --color-background-dark-opacity50: rgba(20, 20, 20, 0.5);
@@ -136,7 +136,7 @@ html[lang="el"] [data-language="en"] {
 }
 
 .section:nth-child(odd) {
-    background-color: var(--color-background-light-secondaty);
+    background-color: var(--color-background-light-secondary);
 }
 
 .section-title {
@@ -341,7 +341,7 @@ html[lang="el"] [data-language="en"] {
 
     background: linear-gradient(
         var(--color-background-light) 10%,
-        var(--color-background-light-secondaty) 100%
+        var(--color-background-light-secondary) 100%
     );
 
     border-radius: var(--border-radius);
