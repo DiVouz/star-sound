@@ -109,8 +109,13 @@ servicesItems_elements.forEach((element, index) => {
     });
 });
 
-const lastServiceSectionId = localStorage.getItem('service-active-element-index') || 0;
-servicesItems_elements[lastServiceSectionId].click();
+const storedServiceIndex = parseInt(localStorage.getItem('service-active-element-index'), 10);
+const lastServiceSectionId = (
+        Number.isInteger(storedServiceIndex) &&
+        storedServiceIndex >= 0 &&
+        storedServiceIndex < servicesItems_elements.length
+    ) ? storedServiceIndex : 0;
+servicesItems_elements[lastServiceSectionId]?.click();
 
 // GALLERY
 
