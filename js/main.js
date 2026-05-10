@@ -55,29 +55,38 @@ window.addEventListener('click', (event) => {
 const navbarLanguageButton_element = document.querySelector('#navbar-language');
 const navbarMoreLanguageButton_element = document.querySelector('#navbar-more-language')
 
-function toggleLanguage(forceLang = null) {
-	if (forceLang === null || forceLang === undefined) {
-		forceLang = document.documentElement.lang === 'en' ? 'el' : 'en';
-	}
-    
-	if (document.documentElement.lang !== forceLang) {
-		document.documentElement.lang = forceLang;
-		let url = new URL(window.location.href);
-		url.searchParams.set('lang', forceLang);
+function setLanguage(lang, { pushHistory = true } = {}) {
+    if (document.documentElement.lang === lang) {
+        return;
+    }
+    document.documentElement.lang = lang;
+
+    if (pushHistory) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', lang);
         window.history.pushState({}, '', url.href);
-	}
+    }
+}
+
+function toggleLanguage(forceLang = null) {
+    const nextLang = (forceLang === 'en' || forceLang === 'el')
+        ? forceLang
+        : (document.documentElement.lang === 'en' ? 'el' : 'en');
+    setLanguage(nextLang);
 }
 
 (() => {
-    navbarLanguageButton_element.addEventListener('click', (event) => toggleLanguage());
-    navbarMoreLanguageButton_element.addEventListener('click', (event) => toggleLanguage());
+    navbarLanguageButton_element.addEventListener('click', () => toggleLanguage());
+    navbarMoreLanguageButton_element.addEventListener('click', () => toggleLanguage());
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const langParam = urlParams.get('lang');
-    if (langParam !== null) {
-        if (langParam === 'en' || langParam === 'el') {
-            toggleLanguage(langParam);
-        }
+    window.addEventListener('popstate', () => {
+        const langParam = new URLSearchParams(window.location.search).get('lang');
+        setLanguage(langParam === 'en' ? 'en' : 'el', { pushHistory: false });
+    });
+
+    const initialLang = new URLSearchParams(window.location.search).get('lang');
+    if (initialLang === 'en' || initialLang === 'el') {
+        setLanguage(initialLang, { pushHistory: false });
     }
 })();
 
